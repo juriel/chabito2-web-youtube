@@ -244,12 +244,100 @@ h1, h2, h3, h4, h5, h6 {
   transform: scale(1.05);
 }
 
-.model-list {
+/* CTA Section - Force white text on dark backgrounds regardless of theme */
+.card-cta {
+  background: #0f172a;
+  color: white !important;
+  border-radius: var(--radius-xl);
+  padding: clamp(2rem, 8vw, 4rem);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.card-cta h2, .card-cta p, .card-cta .section-title {
+  color: white !important;
+}
+
+.card-cta .btn-outline {
+  border-color: rgba(255, 255, 255, 0.3) !important;
+  color: white !important;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.card-cta .btn-outline:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: white !important;
+}
+
+.timeline {
+  display: grid;
+  gap: 3rem;
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 30px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--color-primary), var(--color-secondary), transparent);
+  opacity: 0.2;
+}
+
+.timeline-step {
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  gap: 2rem;
+  align-items: flex-start;
+  position: relative;
+}
+
+.timeline-icon {
+  width: 60px;
+  height: 60px;
+  background: var(--color-bg);
+  border: 2px solid var(--color-primary);
+  color: var(--color-primary);
   display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem;
+  align-items: center;
   justify-content: center;
-  margin-top: 2rem;
+  border-radius: 20px;
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 800;
+  z-index: 1;
+  transition: all 0.3s ease;
+  box-shadow: var(--shadow-sm);
+}
+
+.timeline-step:hover .timeline-icon {
+  background: var(--gradient-primary);
+  color: white;
+  transform: scale(1.1) rotate(5deg);
+  border-color: transparent;
+  box-shadow: var(--shadow-primary);
+}
+
+.timeline-content h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.timeline-content p {
+  color: var(--color-text-muted);
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+@media (max-width: 640px) {
+  .timeline::before { left: 20px; }
+  .timeline-step { grid-template-columns: 40px 1fr; gap: 1rem; }
+  .timeline-icon { width: 40px; height: 40px; font-size: 1.1rem; border-radius: 12px; }
 }
 
 /* Layouts */
@@ -552,10 +640,16 @@ footer { padding: 5rem 0 3rem; }
   border-radius: var(--radius-pill);
   border: 1px solid var(--color-primary);
   background: hsla(var(--p-h), var(--p-s), var(--p-l), 0.1);
-  color: var(--color-primary);
+  color: var(--color-primary) !important;
   font-weight: 700;
   font-size: 0.9rem;
   transition: all 0.2s ease;
+}
+
+html[data-theme="light"] .badge-trigger {
+  background: hsla(var(--p-h), var(--p-s), 40%, 0.1);
+  color: hsl(var(--p-h), var(--p-s), 40%) !important;
+  border-color: hsla(var(--p-h), var(--p-s), 40%, 0.3);
 }
 .badge-trigger:hover {
   background: hsla(var(--p-h), var(--p-s), var(--p-l), 0.2);
