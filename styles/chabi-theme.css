@@ -252,9 +252,26 @@ h1, h2, h3, h4, h5, h6 {
   margin-top: 2rem;
 }
 
-/* Sections */
+/* Layouts */
+.docs-layout {
+  display: grid;
+  gap: 3rem;
+  align-items: flex-start;
+}
+
+@media (min-width: 1024px) {
+  .docs-layout {
+    grid-template-columns: 300px 1fr;
+  }
+}
+
+.docs-content {
+  display: grid;
+  gap: 3rem;
+}
+
 /* Header Component */
-chabi-header { display: block; position: sticky; top: 0; z-index: 100; }
+chabi-header { display: block; position: sticky; top: 0; z-index: 1000; }
 .header-shell { 
   backdrop-filter: blur(20px); 
   -webkit-backdrop-filter: blur(20px);
@@ -770,6 +787,48 @@ tr:hover td { background: hsla(var(--p-h), var(--p-s), var(--p-l), 0.02); }
 /* List Styles */
 ul, ol { padding-left: 1.5rem; }
 li { margin-bottom: 0.5rem; line-height: 1.6; color: var(--color-text); }
+
+/* Architecture Diagram */
+.ascii-diagram {
+  padding: 2rem;
+  background: #0f172a;
+  color: #818cf8;
+  border-radius: 18px;
+  border: 1px solid rgba(129, 196, 215, 0.2);
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  overflow-x: auto;
+  position: relative;
+}
+.ascii-diagram::before {
+  content: "ARCHITECTURE_MAP";
+  position: absolute;
+  top: 0.75rem;
+  right: 1.25rem;
+  font-size: 0.7rem;
+  font-weight: 800;
+  opacity: 0.3;
+}
+
+/* Status Pills */
+.status-badges { display: flex; flex-wrap: wrap; gap: 1rem; }
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.6rem 1.25rem;
+  background: var(--color-bg-soft);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+.status-dot { width: 10px; height: 10px; border-radius: 50%; }
+.status-undefined { background: #94a3b8; box-shadow: 0 0 10px #94a3b8; }
+.status-connecting { background: #fbbf24; box-shadow: 0 0 10px #fbbf24; animation: pulse-soft 2s infinite; }
+.status-open { background: #10b981; box-shadow: 0 0 10px #10b981; }
+.status-close { background: #ef4444; box-shadow: 0 0 10px #ef4444; }
 
 /* Scroll Reveal */
 .reveal {
