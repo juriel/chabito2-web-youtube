@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Documentación | Chabi</title>
+    <meta name="description" content="Documentación técnica de Chabi: arquitectura, API REST, WebSocket, persistencia y variables de entorno." />
+    <script>
+      document.documentElement.dataset.theme = localStorage.getItem("chabi-theme") || "light";
+      window.tailwind = { config: { theme: { extend: { colors: { "chabi-primary": "#270088", "chabi-secondary": "#3A7CA5", "chabi-accent": "#81C3D7", "chabi-neutral": "#D9DCD6" } } } } };
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="./styles/chabi-theme.css" />
+    <script type="module" src="./js/docs.js"></script>
+  </head>
+  <body>
+    <div class="site-shell">
+      <chabi-header active-page="docs"></chabi-header>
+      <main class="section">
+        <div class="container docs-layout">
+          <chabi-sidebar></chabi-sidebar>
+          <div class="docs-content grid gap-6">
+            <div class="docs-surface p-6 md:p-8">
+              <chabi-breadcrumb></chabi-breadcrumb>
+              <div class="mt-4 prose-block">
+                <span class="eyebrow">Referencia técnica</span>
+                <h1 class="section-title">Documentación de arquitectura y operación</h1>
+                <p class="section-copy">Esta guía concentra la estructura interna de Chabi, cómo crear sesiones, cómo interactuar con la API y cómo entender los estados del sistema en producción.</p>
+              </div>
+            </div>
+            <section id="arquitectura" class="docs-surface p-6 md:p-8">
+              <h2 class="section-title">Arquitectura</h2>
+              <p class="section-copy">El flujo de Chabi está diseñado para conectar WhatsApp con un agente de IA persistente y desacoplado, manteniendo tanto la sesión como el historial bajo tu control.</p>
+              <pre class="ascii-diagram">WhatsApp Mobile -> WhatsappSocketEnvelope -> AgentWebSocketServer (8081) -> AiAgent
+                  |                                  |
+                  v                                  v
+           ChatbotInitialSetup              ConversationStore
+             (data/{bot}/)                    (data/{bot}/)</pre>
+            </section>
+            <section id="estructura" class="docs-surface p-6 md:p-8">
+              <h2 class="section-title">Estructura de archivos</h2>
+              <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+                <article class="card p-5"><div class="text-3xl">📦</div><h3 class="mt-3 text-xl">Instalación</h3><p class="muted m-0">Levanta el proyecto con npm o bun y prepara tu `.env` en minutos.</p></article>
+                <article class="card p-5"><div class="text-3xl">🧩</div><h3 class="mt-3 text-xl">Presets y agentes</h3><p class="muted m-0">Organiza prompts, herramientas y almacenamiento por chatbot.</p></article>
+                <article class="card p-5"><div class="text-3xl">🗂️</div><h3 class="mt-3 text-xl">Persistencia</h3><p class="muted m-0">Cada bot mantiene su estado en disco bajo `data/{bot}/`.</p></article>
+              </div>
+            </section>
+            <section id="api-rest" class="docs-surface p-6 md:p-8">
+              <h2 class="section-title">API REST</h2>
+              <div class="table-wrap mt-5">
+                <table>
+                  <thead><tr><th>Método</th><th>Endpoint</th><th>Descripción</th></tr></thead>
+                  <tbody>
+                    <tr><td>POST</td><td><code>/api/sessions/:uuid</code></td><td>Crear una nueva sesión.</td></tr>
+                    <tr><td>GET</td><td><code>/api/sessions</code></td><td>Listar sesiones activas.</td></tr>
+                    <tr><td>GET</td><td><code>/api/sessions/:uuid/qr</code></td><td>Obtener estado y QR en texto.</td></tr>
+                    <tr><td>GET</td><td><code>/api/sessions/:uuid/qr/png</code></td><td>Descargar QR como PNG.</td></tr>
+                    <tr><td>GET</td><td><code>/api/sessions/:uuid/status</code></td><td>Consultar el estado actual.</td></tr>
+                    <tr><td>POST</td><td><code>/api/sessions/:uuid/send</code></td><td>Enviar un mensaje saliente.</td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="mt-6 grid gap-4">
+                <chabi-code-block id="api-create"></chabi-code-block>
+                <chabi-code-block id="api-qr"></chabi-code-block>
+                <chabi-code-block id="api-status"></chabi-code-block>
+                <chabi-code-block id="api-send"></chabi-code-block>
+              </div>
+            </section>
+            <section id="websocket" class="docs-surface p-6 md:p-8">
+              <h2 class="section-title">WebSocket</h2>
+              <p class="section-copy">Chabi expone un servidor WebSocket dedicado para coordinar el agente, eventos de mensajería y sincronización de la sesión con el runtime del bot.</p>
+              <div class="card p-5"><p class="m-0"><strong>Host por defecto:</strong> <code>ws://127.0.0.1:8081</code></p><p class="m-0 mt-3 muted">Úsalo para instrumentación interna, conexiones de agentes y eventos en tiempo real.</p></div>
+            </section>
+            <section id="variables" class="docs-surface p-6 md:p-8">
+              <h2 class="section-title">Variables de entorno</h2>
+              <div class="table-wrap mt-5">
+                <table>
+                  <thead><tr><th>Variable</th><th>Default</th><th>Descripción</th></tr></thead>
+                  <tbody>
+                    <tr><td><code>PORT</code></td><td><code>3000</code></td><td>Puerto HTTP principal.</td></tr>
+                    <tr><td><code>AGENT_WS_PORT</code></td><td><code>8081</code></td><td>Puerto WebSocket del agente.</td></tr>
+                    <tr><td><code>AGENT_WS_HOST</code></td><td><code>127.0.0.1</code></td><td>Host del WebSocket.</td></tr>
+                    <tr><td><code>PI_PROVIDER</code></td><td><code>openai</code></td><td>Proveedor de IA.</td></tr>
+                    <tr><td><code>PI_MODEL</code></td><td><code>gpt-5-mini</code></td><td>Modelo de IA por defecto.</td></tr>
+                    <tr><td><code>AGENT_SYSTEM_PROMPT</code></td><td>—</td><td>Prompt del sistema del agente.</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+            <section id="clases" class="docs-surface p-6 md:p-8">
+              <h2 class="section-title">Clases principales</h2>
+              <div class="grid gap-4 md:grid-cols-2">
+                <article class="card p-5"><h3>WhatsappSocketEnvelope</h3><p class="muted m-0">Encapsula el socket de WhatsApp, coordina eventos entrantes y la recuperación del estado de sesión.</p></article>
+                <article class="card p-5"><h3>AiAgent / AiAgentBuilder</h3><p class="muted m-0">Construyen el agente, inyectan proveedor, modelo, prompt del sistema y herramientas disponibles.</p></article>
+                <article class="card p-5"><h3>AgentsMap</h3><p class="muted m-0">Mantiene el registro de agentes activos para una misma instancia de Chabi.</p></article>
+                <article class="card p-5"><h3>ConversationStore</h3><p class="muted m-0">Persiste memoria por conversación y permite restaurar contexto entre reinicios.</p></article>
+                <article class="card p-5 md:col-span-2"><h3>ChatbotInitialSetup</h3><p class="muted m-0">Prepara carpetas, archivos base y configuración inicial para cada nuevo chatbot en `data/{bot}/`.</p></article>
+              </div>
+            </section>
+            <section id="persistencia" class="docs-surface p-6 md:p-8">
+              <h2 class="section-title">Capa de persistencia</h2>
+              <p class="section-copy">Chabi separa claramente persistencia de texto y persistencia estructurada para que puedas reconstruir contexto, estados y eventos sin perder trazabilidad.</p>
+              <div class="grid gap-4">
+                <chabi-code-block id="persist-text"></chabi-code-block>
+                <chabi-code-block id="persist-json"></chabi-code-block>
+              </div>
+            </section>
+            <section id="estados" class="docs-surface p-6 md:p-8">
+              <h2 class="section-title">Estados de conexión</h2>
+              <div class="status-badges mt-5">
+                <span class="status-pill"><span class="status-dot status-undefined"></span>undefined</span>
+                <span class="status-pill"><span class="status-dot status-connecting"></span>connecting</span>
+                <span class="status-pill"><span class="status-dot status-open"></span>open</span>
+                <span class="status-pill"><span class="status-dot status-close"></span>close</span>
+              </div>
+              <p class="mt-5 mb-0 muted">Estos estados te ayudan a diagnosticar reconexiones, QR expirados o sesiones listas para responder.</p>
+            </section>
+          </div>
+        </div>
+      </main>
+      <chabi-footer></chabi-footer>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Instalación | Chabi</title>
+    <meta name="description" content="Guía de instalación de Chabi para crear tu primer chatbot inteligente en WhatsApp." />
+    <script>
+      document.documentElement.dataset.theme = localStorage.getItem("chabi-theme") || "light";
+      window.tailwind = { config: { theme: { extend: { colors: { "chabi-primary": "#270088", "chabi-secondary": "#3A7CA5", "chabi-accent": "#81C3D7", "chabi-neutral": "#D9DCD6" } } } } };
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="./styles/chabi-theme.css" />
+    <script type="module" src="./js/install.js"></script>
+  </head>
+  <body>
+    <div class="site-shell">
+      <chabi-header active-page="install"></chabi-header>
+      <main>
+        <chabi-hero compact title="Instala Chabi en minutos" subtitle="Sigue estos pasos y tendrás tu primer chatbot de WhatsApp con IA funcionando." accent="Chabi"></chabi-hero>
+        <section class="section">
+          <div class="container grid gap-6 lg:grid-cols-[320px_minmax(0,1fr)]">
+            <aside class="card p-6">
+              <span class="eyebrow">Requisitos previos</span>
+              <ul class="mt-4 space-y-3 pl-5 text-[var(--color-text-muted)]">
+                <li>Node.js 18 o superior, o Bun.</li>
+                <li>`npm`, `yarn` o `bun` instalado.</li>
+                <li>Una cuenta de WhatsApp disponible para vincular.</li>
+                <li>API Key de OpenAI, Anthropic, Gemini, Groq u OpenRouter.</li>
+              </ul>
+            </aside>
+            <div class="grid gap-6">
+              <chabi-step-card step="1" title="Clonar el repositorio" description="Descarga el proyecto oficial y entra a la carpeta base."><chabi-code-block id="clone-code"></chabi-code-block></chabi-step-card>
+              <chabi-step-card step="2" title="Instalar dependencias" description="Puedes usar npm, yarn o bun. Bun suele ser la opción más rápida para iterar."><chabi-code-block id="dependencies-code"></chabi-code-block></chabi-step-card>
+              <chabi-step-card step="3" title="Configurar variables de entorno" description="Copia el archivo base y luego define el proveedor de IA que vas a utilizar."><div class="grid gap-4"><chabi-code-block id="api-code"></chabi-code-block><chabi-code-block id="env-code"></chabi-code-block></div></chabi-step-card>
+              <section class="docs-surface p-6">
+                <h3 class="mb-4 text-2xl font-extrabold" style="font-family: var(--font-display);">Variables de entorno soportadas</h3>
+                <div class="table-wrap">
+                  <table>
+                    <thead><tr><th>Variable</th><th>Default</th><th>Descripción</th></tr></thead>
+                    <tbody>
+                      <tr><td><code>PORT</code></td><td><code>3000</code></td><td>Puerto de la API HTTP.</td></tr>
+                      <tr><td><code>AGENT_WS_PORT</code></td><td><code>8081</code></td><td>Puerto del servidor WebSocket del agente.</td></tr>
+                      <tr><td><code>AGENT_WS_HOST</code></td><td><code>127.0.0.1</code></td><td>Host donde expone el WebSocket.</td></tr>
+                      <tr><td><code>PI_PROVIDER</code></td><td><code>openai</code></td><td>Proveedor de IA activo.</td></tr>
+                      <tr><td><code>PI_MODEL</code></td><td><code>gpt-5-mini</code></td><td>Modelo base usado por el agente.</td></tr>
+                      <tr><td><code>AGENT_SYSTEM_PROMPT</code></td><td>—</td><td>Prompt del sistema que define el comportamiento global.</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+              <chabi-step-card step="4" title="Iniciar el servidor" description="Arranca la API HTTP y el WebSocket del agente para empezar a vincular sesiones.">
+                <chabi-code-block id="boot-code"></chabi-code-block>
+                <div class="mt-4 grid gap-3 md:grid-cols-2">
+                  <div class="rounded-[24px] border border-black/5 bg-white/70 p-4"><strong>HTTP API</strong><p class="m-0 muted">`http://localhost:3000`</p></div>
+                  <div class="rounded-[24px] border border-black/5 bg-white/70 p-4"><strong>Agent WebSocket</strong><p class="m-0 muted">`ws://localhost:8081`</p></div>
+                </div>
+              </chabi-step-card>
+              <chabi-step-card step="5" title="Crear tu primer chatbot" description="Usa el panel web para crear una sesión, generar QR y conectar tu cuenta.">
+                <ol class="m-0 grid gap-3 pl-5 text-[var(--color-text-muted)]">
+                  <li>Abrir `http://localhost:3000`.</li>
+                  <li>Ir a “Administrar Chatbots”.</li>
+                  <li>Ingresar un UUID como `ventas-bot`.</li>
+                  <li>Hacer clic en “Crear chatbot”.</li>
+                  <li>Escanear el QR desde WhatsApp en “Dispositivos vinculados”.</li>
+                </ol>
+              </chabi-step-card>
+              <section class="card success-card p-6">
+                <h3 class="m-0 text-2xl font-extrabold" style="font-family: var(--font-display);">Paso 6: ¡Funcionando! 🎉</h3>
+                <p class="mt-3 mb-0">Cuando el estado pase a <strong>`open`</strong>, Chabi restaurará automáticamente la sesión en próximos arranques y tu bot quedará listo para responder.</p>
+              </section>
+            </div>
+          </div>
+        </section>
+        <section class="section-tight">
+          <div class="container">
+            <div class="docs-surface p-6 md:p-8">
+              <span class="eyebrow">Solución de problemas</span>
+              <div class="mt-6 grid gap-4 md:grid-cols-3">
+                <div class="rounded-[24px] border border-black/5 bg-white/70 p-5"><h3 class="text-xl">Puerto 8081 ocupado</h3><p class="muted m-0">Cambia `AGENT_WS_PORT` en `.env` y reinicia el proceso.</p></div>
+                <div class="rounded-[24px] border border-black/5 bg-white/70 p-5"><h3 class="text-xl">QR expirado</h3><p class="muted m-0">Espera la regeneración automática o reinicia la sesión para obtener uno nuevo.</p></div>
+                <div class="rounded-[24px] border border-black/5 bg-white/70 p-5"><h3 class="text-xl">El bot no responde</h3><p class="muted m-0">Revisa la API Key configurada, el proveedor activo y los logs del proceso.</p></div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+      <chabi-footer></chabi-footer>
+    </div>
+  </body>
+</html>

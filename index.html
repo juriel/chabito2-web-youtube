@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chabi | Chatbots inteligentes para WhatsApp</title>
+    <meta name="description" content="Chabi es software open source para crear chatbots y agentes de WhatsApp con IA, multi-sesión y soporte para múltiples LLM." />
+    <script>
+      document.documentElement.dataset.theme = localStorage.getItem("chabi-theme") || "light";
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "hsl(250, 85%, 65%)",
+              secondary: "hsl(190, 90%, 50%)",
+            }
+          }
+        }
+      }
+    </script>
+    <link rel="stylesheet" href="./styles/chabi-theme.css" />
+    <script type="module" src="./js/index.js"></script>
+    <style>
+      .reveal {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+      .reveal.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="site-shell">
+      <chabi-header active-page="home"></chabi-header>
+      
+      <main>
+        <chabi-hero></chabi-hero>
+
+        <section class="section reveal">
+          <div class="container grid gap-16 lg:grid-cols-2 lg:items-center">
+            <div class="flex flex-col gap-6">
+              <span class="eyebrow">¿Qué es Chabi?</span>
+              <h2 class="section-title">Automatización de WhatsApp con enfoque developer-first.</h2>
+              <p class="lede">Chabi te permite crear bots personales, equipos de soporte y asistentes internos sobre WhatsApp sin ceder control de la infraestructura.</p>
+              <p class="muted">Trabaja con múltiples sesiones simultáneas, flujos agénticos y un panel simple para iniciar bots por QR. Basado en Baileys, Node.js y el framework pi-agent-core.</p>
+              <div class="mt-4">
+                <a href="docs.html" class="btn-outline">Saber más sobre la arquitectura</a>
+              </div>
+            </div>
+            <div class="card relative overflow-hidden group">
+              <div class="absolute -top-24 -right-24 w-64 h-64 bg-primary/10 rounded-full blur-3xl group-hover:bg-primary/20 transition-all duration-500"></div>
+              <div class="grid gap-6 relative z-10">
+                <div class="flex items-center justify-between rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur-sm">
+                  <div><p class="font-bold text-lg">Sesiones activas</p><p class="text-sm muted">Multi-instancia real.</p></div>
+                  <span class="px-3 py-1 rounded-full bg-secondary/20 text-secondary text-sm font-bold border border-secondary/30">12 conectadas</span>
+                </div>
+                <div class="rounded-2xl bg-slate-900 p-6 text-white shadow-2xl">
+                  <p class="text-xs uppercase tracking-widest text-white/40 mb-4">Escaneo instantáneo</p>
+                  <div class="flex items-center gap-6">
+                    <div class="h-24 w-24 rounded-xl bg-white p-2 flex items-center justify-center">
+                       <svg viewBox="0 0 24 24" class="w-full h-full text-slate-900"><path fill="currentColor" d="M3 3h8v8H3V3zm2 2v4h4V5H5zm8-2h8v8h-8V3zm2 2v4h4V5h-4zM3 13h8v8H3v-8zm2 2v4h4v-4H5zm13-2h3v2h-3v-2zm-3 0h2v2h-2v-2zm3 3h3v2h-3v-2zm-3 0h2v2h-2v-2zm3 3h3v2h-3v-2zm-3 0h2v2h-2v-2zM13 13h2v2h-2v-2zm0 3h2v2h-2v-2zm0 3h2v2h-2v-2z"/></svg>
+                    </div>
+                    <div>
+                      <p class="font-bold text-xl mb-1">ventas-bot</p>
+                      <p class="text-sm text-white/60">Listo para vincular y empezar a responder.</p>
+                    </div>
+                  </div>
+                </div>
+                <p class="text-center text-sm italic muted">"Tu backend, tus prompts, tus sesiones, tus reglas."</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section-tight reveal">
+          <div class="container">
+            <div class="mb-12 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+              <div>
+                <span class="eyebrow">Características</span>
+                <h2 class="section-title">Todo lo necesario para producción.</h2>
+              </div>
+              <a class="btn-outline" href="docs.html">Explorar documentación →</a>
+            </div>
+            <div id="features-grid" class="grid-auto"></div>
+          </div>
+        </section>
+
+        <section class="section-tight reveal">
+          <div class="container">
+            <div class="card text-center p-12">
+              <span class="eyebrow mx-auto">IA Agóstica</span>
+              <h2 class="section-title">Usa el modelo que mejor encaje.</h2>
+              <p class="lede max-w-2xl mx-auto mb-10">Chabi soporta nativamente a los principales proveedores de modelos de lenguaje del mercado.</p>
+              <div class="providers-row">
+                <span class="provider-pill">OpenAI</span>
+                <span class="provider-pill">Anthropic</span>
+                <span class="provider-pill">Google Gemini</span>
+                <span class="provider-pill">Groq</span>
+                <span class="provider-pill">xAI (Grok)</span>
+                <span class="provider-pill">OpenRouter</span>
+                <span class="provider-pill">Ollama</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section reveal">
+          <div class="container">
+            <div class="mb-16 text-center">
+              <span class="eyebrow mx-auto">Workflow</span>
+              <h2 class="section-title">Tres pasos para el éxito.</h2>
+            </div>
+            <div class="timeline">
+              <article class="timeline-step">
+                <div class="timeline-icon">1</div>
+                <div>
+                  <h3 class="text-2xl mb-2">Configura tu LLM</h3>
+                  <p class="lede">Elige tu proveedor de IA y agrega la API Key dentro de `.env`. Soporte para variables personalizadas por sesión.</p>
+                </div>
+              </article>
+              <article class="timeline-step">
+                <div class="timeline-icon">2</div>
+                <div>
+                  <h3 class="text-2xl mb-2">Escanea el QR</h3>
+                  <p class="lede">Abre la interfaz web y vincula tu cuenta de WhatsApp. Soporta multi-dispositivo y sesiones persistentes.</p>
+                </div>
+              </article>
+              <article class="timeline-step">
+                <div class="timeline-icon">3</div>
+                <div>
+                  <h3 class="text-2xl mb-2">¡Despliega!</h3>
+                  <p class="lede">Tu bot empieza a responder con IA y memoria contextual. Monitorea logs y métricas en tiempo real.</p>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="section reveal">
+          <div class="container">
+            <div class="bg-slate-950 rounded-[48px] p-12 md:p-24 text-center text-white relative overflow-hidden shadow-2xl">
+              <div class="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/20"></div>
+              <div class="relative z-10 flex flex-col items-center gap-8">
+                <span class="eyebrow !bg-white/10 !border-white/20 !text-white">Empieza gratis hoy</span>
+                <h2 class="text-5xl md:text-7xl font-extrabold tracking-tight">Lanza tu primer bot en minutos.</h2>
+                <p class="text-xl text-white/60 max-w-2xl">Clona el repositorio, configura tu proveedor de IA favorito y escanea el QR. El resto queda listo para escalar.</p>
+                <div class="flex gap-4">
+                  <a class="btn-primary !bg-white !text-slate-900" href="install.html">Ir a la instalación</a>
+                  <a class="btn-outline !text-white !border-white/20" href="#">Soporte técnico</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <chabi-footer></chabi-footer>
+    </div>
+
+    <script>
+      const observerOptions = {
+        threshold: 0.1
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+  </body>
+</html>
