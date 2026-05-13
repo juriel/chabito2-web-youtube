@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="800"
+   height="800"
+   viewBox="0 0 211.66666 211.66667"
+   version="1.1"
+   id="svg259"
+   inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
+   sodipodi:docname="logo.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview261"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="0.69664703"
+     inkscape:cx="396.90114"
+     inkscape:cy="561.25984"
+     inkscape:window-width="1920"
+     inkscape:window-height="1011"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs256" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       id="path584-3-3"
+       style="fill:#270088;fill-opacity:1;stroke-width:9.88226;stroke-linecap:round;stroke-linejoin:round"
+       d="M 107.13939,16.254548 C 53.475675,16.254537 9.9720852,51.216066 9.9704192,94.344193 9.9867992,118.4466 23.853621,141.19188 47.540161,155.97525 c 1.03211,30.75725 57.875849,41.34371 81.378859,34.52153 -16.96582,-1.66803 -31.717286,-10.42143 -31.123886,-18.34255 3.096456,0.30774 3.821756,0.26679 9.344256,0.28244 53.66511,0 97.1692,-34.96325 97.16898,-78.092447 -0.002,-43.128129 -43.50526,-78.089659 -97.16898,-78.089648 z"
+       sodipodi:nodetypes="sccccccss" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:54.6311px;font-family:Comfortaa;-inkscape-font-specification:'Comfortaa Bold';text-align:center;text-anchor:middle;fill:#e8eaf3;fill-opacity:1;stroke-width:6.8282"
+       x="106.65012"
+       y="113.90903"
+       id="text12569-2-5-2-6-6"
+       transform="rotate(-0.94483484)"><tspan
+         sodipodi:role="line"
+         id="tspan12567-0-6-9-7-7"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Comfortaa;-inkscape-font-specification:'Comfortaa Bold';fill:#e8eaf3;fill-opacity:1;stroke-width:6.8282"
+         x="106.65012"
+         y="113.90903">Chabi</tspan></text>
+  </g>
+</svg>
